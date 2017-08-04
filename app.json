@@ -1,0 +1,6 @@
+{
+  "name": "Conversation bot example",
+  "description": "Conversation Bot example application showing Watson Conversation and Discovery services using Angular2 with Express ",
+  "repository": "https://github.com/pdestrais/Watson-conversation-with-discovery-using-angular-and-NodeJS",
+  "keywords": ["angular2", "express", "node","watson","conversation","discovery"]
+}
