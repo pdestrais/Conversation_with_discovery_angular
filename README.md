@@ -17,8 +17,8 @@ It uses the following technologies
 # Install / Development
 
 ```bash
-git clone https://github.com/pdestrais/Watson-conversation-with-discovery-using-angular-and-NodeJS
-cd Watson-conversation-with-discovery-using-angular-and-NodeJS
+git clone https://github.com/pdestrais/Conversation_with_discovery_angular
+cd Conversation_with_discovery_angular
 ```
 # Install dependencies
 ```bash 
