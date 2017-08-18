@@ -1,12 +1,8 @@
-  <div id='view-change-button' class='button' (click)='togglePanel($event)'>
-    <img title='Click to Collapse' class='option full' src='assets/images/Chat Button.png'>
-    <img title='Click to Expand' class='option not-full' src='assets/images/Code Button.png'>
-  </div>
 
-  <div id='chatbox' class='chatbox'>
-      <div id='messagesBox'>
-        <div id='messages' class='messages'>
-          <div id='segments' *ngFor="let segment of segments">
+    <div id='chatbox' [ngClass]='viewClass'>
+ 
+        <div *ngIf='viewClass=="wrapperCONV" || viewClass=="wrapperMIX"' id='messages' class='comflow'>
+           <div id='segments' *ngFor="let segment of segments">
             <div [class]='segment.isUser() ? "from-user" :
               (segment !== segments[segments.length - 1] ? "from-watson" : "from-watson-latest")'>
               <p class='padding' [innerHtml]='segment.getText()'></p>
@@ -22,26 +18,28 @@
             <div *ngIf='segment.isUser() && segment == segments[segments.length - 1]' class='load'></div>
           </div>
         </div>
-        <div class='footer'>
-          <div>
+
+        <div class='postmsg'>
+           <div>
             <label for='textInput' class='inputOutline'>
               <input id='textInput' class='input responsive-column' placeholder='Type something' type='text'
                 [(ngModel)]='question' (keydown)='keypressed($event)' style='width:100%'>
             </label>
           </div>
-          <div class='draw'></div>
+           <div class='draw'></div>
         </div>
-      </div>
-      <div class='payloadBox'> 
-        <div id='payload-column' class='fixed-column content-column'>
-          <payload id='payload-request' class='payload' label='Sent to Watson' [style]='segments.length <= 2 ?
+
+        <div *ngIf='viewClass=="wrapperUTH" || viewClass=="wrapperMIX"' class='inspect'> 
+         <div id='payload-column' class=''>
+ 
+           <payload id='payload-request' class='payload' label='Sent to Watson' [style]='segments.length <= 2 ?
             "display : none;" : ""' [payload]='(segments.length > 1 && segments[segments.length - 2].isUser()) ?
             segments[segments.length - 2].getPayload() : null'></payload>
           <payload id='payload-response' class='payload' label='Watson understands' [style]='segments.length <= 1 ?
             "display : none;" : ""' [payload]='(segments.length > 0 && !segments[segments.length - 1].isUser()) ?
             segments[segments.length - 1].getPayload() : null'></payload>
-        </div>
-      </div>
+ 
+         </div>
+       </div>
   </div>
-<!--  </div>
--->
+

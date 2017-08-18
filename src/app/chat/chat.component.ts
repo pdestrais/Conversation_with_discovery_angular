@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import {DialogResponse} from './dialog.response';
 import {DialogService} from './dialog.service';
 import {Http, Headers} from '@angular/http';
+import { Subscription } from 'rxjs/Subscription';
 
+import { ViewService } from '../service/view.service'
+import { ViewState } from '../service/view.service'
 
 @Component({
   providers: [DialogService],
   selector: 'chat-app',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  inputs: ['view']
 })
 export class ChatComponent implements OnInit {
   // Store the response so we can display the JSON for end user to see
@@ -21,9 +25,17 @@ export class ChatComponent implements OnInit {
   private segments : DialogResponse[] = []; // Array of requests and responses
   private workspace_id : string = null;
   private langData : any;
+  private viewClassChanged: Subscription;  
+  viewClass: string = 'wrapperMIX';
 
-  constructor (private _dialogService : DialogService, private http : Http) {
+  constructor (private _dialogService : DialogService, private http : Http, private viewService : ViewService) {
     console.log("entering chat");
+    this.viewClassChanged = this.viewService.viewState
+    .subscribe((viewState: ViewState) => {
+      this.viewClass = viewState.viewClass;
+      console.log(`view class changed to : `+this.viewClass);
+    });
+
     this.getLang();
   }
 
@@ -66,6 +78,8 @@ export class ChatComponent implements OnInit {
     //this.checkSetup(_dialogService);
     //let rightColumn = <HTMLElement>document.querySelector ('.right');
     //this.resizePayloadColumn (rightColumn);
+
+    console.log('view : '+this.viewClass);
   }
 /*
  * This method is responsible for detecting if the set-up processs involving creation of various Watson services
@@ -313,7 +327,7 @@ export class ChatComponent implements OnInit {
          let messages : any = document.getElementById('messages').getElementsByClassName('clear');
          document.getElementById('messages').scrollTop = messages[messages.length - 1].offsetTop;
 //         document.getElementById('scrollingChat').offsetTop = messages[messages.length - 1].offsetTop;
-        }, 50);
+        }, 500);
         document.getElementById('textInput').focus();
       },
       error => {

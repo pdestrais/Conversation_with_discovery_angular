@@ -60,8 +60,8 @@ From project root, go to dist directory, log on to bluemix (enter when prompted 
 
 ```bash
 cd dist
-cf login 
-cf push [Bluemix application name - example : Conversation-with-discovery-angular]
+cf login -a https://api.eu-gb.bluemix.net
+cf push [Bluemix application name - example : PHD-ConversationWithDiscovery-Angular]
 ```
 
 >**Note:** after the push command, the process sometimes hangs on the "starting app ..." phase. Log into bluemix and try to restart manually the server.

@@ -20,7 +20,7 @@ import { AppRoutingModule } from './app.router';
 //import { LoginComponent } from './login/login.component';
 //import { RegisterComponent } from './register/register.component';
 
-//import { EventService } from './service/event.service';
+import { ViewService } from './service/view.service';
 import { HomeComponent } from './home/home.component';
 import { ChatModule } from './chat/chat.module';
 
@@ -48,7 +48,7 @@ import { ChatModule } from './chat/chat.module';
   providers: [
 //    WeatherService, 
 //    DataService,
-//    EventService, 
+    ViewService, 
  //   AuthGuard,
 //    AlertService,
 //    AuthenticationService,
