@@ -11,8 +11,7 @@ import { ViewState } from '../service/view.service'
   providers: [DialogService],
   selector: 'chat-app',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css'],
-  inputs: ['view']
+  styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
   // Store the response so we can display the JSON for end user to see

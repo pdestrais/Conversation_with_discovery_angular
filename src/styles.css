@@ -331,7 +331,7 @@ a > img {
   line-height: 1.125rem;
   background-color: #23292A;
   color: #fff;
-  overflow-x: auto;
+  overflow: auto;
 /*   max-width: 32.0625rem;
   min-width: 25.6875rem;
  */}
@@ -779,7 +779,9 @@ text-decoration:none;
 
 /* grid related classes */
 	.inspect {
-		grid-area: inspect;
+    grid-area: inspect;
+    overflow: auto;
+    max-height: 85vh;
 	}
 
 	.comflow {
@@ -826,7 +828,9 @@ text-decoration:none;
     grid-gap: 1em;
     grid-template-areas:
      "inspect"
-     "postmsg"
+     "postmsg";
+     max-width: 100vw;
+     max-height: 90vh;
   }
 
 	@media only screen and (min-width: 800px)   {
@@ -854,10 +858,6 @@ text-decoration:none;
 			max-height: 90vh;
 		}
 	}
-*/
-.inspect {
-	overflow: auto;
-}
 
 
 .nav-side-menu {

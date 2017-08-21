@@ -1,45 +1,44 @@
+<div id='chatbox' [ngClass]='viewClass'>
 
-    <div id='chatbox' [ngClass]='viewClass'>
- 
-        <div *ngIf='viewClass=="wrapperCONV" || viewClass=="wrapperMIX"' id='messages' class='comflow'>
-           <div id='segments' *ngFor="let segment of segments">
-            <div [class]='segment.isUser() ? "from-user" :
-              (segment !== segments[segments.length - 1] ? "from-watson" : "from-watson-latest")'>
-              <p class='padding' [innerHtml]='segment.getText()'></p>
-              <div *ngIf="!segment.isUser() && segment.getCe().length>0 && segment !== segments[0]">
-                <span title='Click to Collapse' (click)='CeToggle($event)' style='border : none;'
-                class='expcoll'>Collapse Results <span class='sign'>-</span></span>
-                <div class='toggleCe'>
-                  <ce-doc *ngFor="let doc of segment.getCe()" [doc]='doc'></ce-doc>
-                </div>
-              </div>
-            </div>
-            <div class='clear'></div>
-            <div *ngIf='segment.isUser() && segment == segments[segments.length - 1]' class='load'></div>
+  <div *ngIf='viewClass=="wrapperCONV" || viewClass=="wrapperMIX"' id='messages' class='comflow'>
+      <div id='segments' *ngFor="let segment of segments">
+      <div [class]='segment.isUser() ? "from-user" :
+        (segment !== segments[segments.length - 1] ? "from-watson" : "from-watson-latest")'>
+        <p class='padding' [innerHtml]='segment.getText()'></p>
+        <div *ngIf="!segment.isUser() && segment.getCe().length>0 && segment !== segments[0]">
+          <span title='Click to Collapse' (click)='CeToggle($event)' style='border : none;'
+          class='expcoll'>Collapse Results <span class='sign'>-</span></span>
+          <div class='toggleCe'>
+            <ce-doc *ngFor="let doc of segment.getCe()" [doc]='doc'></ce-doc>
           </div>
         </div>
-
-        <div class='postmsg'>
-           <div>
-            <label for='textInput' class='inputOutline'>
-              <input id='textInput' class='input responsive-column' placeholder='Type something' type='text'
-                [(ngModel)]='question' (keydown)='keypressed($event)' style='width:100%'>
-            </label>
-          </div>
-           <div class='draw'></div>
-        </div>
-
-        <div *ngIf='viewClass=="wrapperUTH" || viewClass=="wrapperMIX"' class='inspect'> 
-         <div id='payload-column' class=''>
- 
-           <payload id='payload-request' class='payload' label='Sent to Watson' [style]='segments.length <= 2 ?
-            "display : none;" : ""' [payload]='(segments.length > 1 && segments[segments.length - 2].isUser()) ?
-            segments[segments.length - 2].getPayload() : null'></payload>
-          <payload id='payload-response' class='payload' label='Watson understands' [style]='segments.length <= 1 ?
-            "display : none;" : ""' [payload]='(segments.length > 0 && !segments[segments.length - 1].isUser()) ?
-            segments[segments.length - 1].getPayload() : null'></payload>
- 
-         </div>
-       </div>
+      </div>
+      <div class='clear'></div>
+      <div *ngIf='segment.isUser() && segment == segments[segments.length - 1]' class='load'></div>
+    </div>
   </div>
+
+  <div class='postmsg'>
+      <div>
+      <label for='textInput' class='inputOutline'>
+        <input id='textInput' class='input responsive-column' placeholder='Type something' type='text'
+          [(ngModel)]='question' (keydown)='keypressed($event)' style='width:100%'>
+      </label>
+    </div>
+      <div class='draw'></div>
+  </div>
+
+  <div *ngIf='viewClass=="wrapperUTH" || viewClass=="wrapperMIX"' class='inspect'> 
+    <div id='payload-column' class=''>
+
+      <payload id='payload-request' class='payload' label='Sent to Watson' [style]='segments.length <= 2 ?
+      "display : none;" : ""' [payload]='(segments.length > 1 && segments[segments.length - 2].isUser()) ?
+      segments[segments.length - 2].getPayload() : null'></payload>
+    <payload id='payload-response' class='payload' label='Watson understands' [style]='segments.length <= 1 ?
+      "display : none;" : ""' [payload]='(segments.length > 0 && !segments[segments.length - 1].isUser()) ?
+      segments[segments.length - 1].getPayload() : null'></payload>
+
+    </div>
+  </div>
+</div>
 

@@ -57,27 +57,11 @@
       </div>
     </nav>
   </div>
- 
-<!--  <div>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-       <a class="navbar-brand" href="#">
-      </a>
-      <img src="/assets/images/Council_of_EU.png" width="100" height="50" class="d-inline-block align-middle" alt="">
-      <div style='margin-left: 10px;'>Your Europe Bot</div>
-       <div id='view-change-button' class='button form-inline' (click)='togglePanel($event)'>
-       <div id='view-change-button' class='button form-inline' (click)='showMenu()'>
-        <img title='Click to Collapse' class='option full' src='assets/images/Chat Button.png'>
-        <img title='Click to Expand' class='option not-full' src='assets/images/Code Button.png'>
-      </div>
-     </nav>
-  </div>
--->
-
-  <chat-app [view]="view">
+  <chat-app>
   </chat-app>
 </div>
 
-<div id="mysidemenu" class="nav-side-menu">
+<div *ngIf='menu' id="mysidemenu" class="nav-side-menu">
   <div class="brand">Menu<i class="fa fa-times fa-2x" style='position: relative; left: 80%' (click)='hideMenu()'></i></div>
   <div class="menu-list">
       <ul id="menu-content" class="menu-content collapse out">
